@@ -69,7 +69,7 @@ function App() {
             <Button
               variant="outline-light"
               onClick={handleShowMobileMenu}
-              className="d-lg-none me-3 border-0 hamburger-btn"
+              className="d-lg-none me-3 border-0` hamburger-btn"
               style={{ background: "transparent" }}
             >
               <span className="navbar-toggler-icon"></span>
@@ -108,20 +108,20 @@ function App() {
                   id="desktop-nav-dropdown"
                   className="mx-2 fw-semibold"
                 >
-                  <NavDropdown.Item as={Link} to="/learn">
+                  <NavDropdown.Item as={Link} to="/learn" className="fw-semibold">
                     Learn More
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/privacy">
+                  <NavDropdown.Item as={Link} to="/privacy" className="fw-semibold">
                     Privacy Policy
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/contact">
+                  <NavDropdown.Item as={Link} to="/contact" className="fw-semibold">
                     Contact Us
                   </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item as={Link} to="/login">
+                  <NavDropdown.Divider className="" />
+                  <NavDropdown.Item as={Link} to="/login" className="text-primary fw-semibold">
                     Login
                   </NavDropdown.Item>
-                  <NavDropdown.Item as={Link} to="/signup">
+                  <NavDropdown.Item as={Link} to="/signup" className="text-primary fw-semibold">
                     Sign Up
                   </NavDropdown.Item>
                 </NavDropdown>

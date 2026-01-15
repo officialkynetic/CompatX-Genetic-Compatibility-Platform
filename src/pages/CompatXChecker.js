@@ -163,7 +163,7 @@ const CompatibilityChecker = () => {
             <Card.Body>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Name (Optional)</Form.Label>
+                  <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter name"
@@ -175,7 +175,7 @@ const CompatibilityChecker = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Genotype *</Form.Label>
+                  <Form.Label>Genotype</Form.Label>
                   <Form.Select
                     value={user1.genotype}
                     onChange={(e) =>
@@ -235,7 +235,7 @@ const CompatibilityChecker = () => {
             <Card.Body>
               <Form>
                 <Form.Group className="mb-3">
-                  <Form.Label>Name (Optional)</Form.Label>
+                  <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="Enter partner's name"
@@ -247,7 +247,7 @@ const CompatibilityChecker = () => {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                  <Form.Label>Genotype *</Form.Label>
+                  <Form.Label>Genotype</Form.Label>
                   <Form.Select
                     value={user2.genotype}
                     onChange={(e) =>
@@ -306,7 +306,7 @@ const CompatibilityChecker = () => {
           size="lg"
           onClick={checkCompatibility}
           disabled={!user1.genotype || !user2.genotype}
-          className="px-5 py-3"
+          className="px-5 py-3 bg-primary text-white"
         >
           Check Compatibility
         </Button>
