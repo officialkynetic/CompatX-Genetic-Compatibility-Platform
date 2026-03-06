@@ -44,7 +44,6 @@ const healthProfileSchema = new mongoose.Schema({
   }
 });
 
-// Update the updatedAt field on save
 healthProfileSchema.pre('save', function(next) {
   this.updatedAt = Date.now();
   next();
