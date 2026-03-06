@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { Container, Card, Form, Button, Alert, Spinner, Row, Col } from "react-bootstrap";
-import { auth, db } from "../firebase";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { doc, setDoc } from "firebase/firestore";
+// import React, { useState } from "react";
+// import { Link, useNavigate } from "react-router-dom";
+// import { Container, Card, Form, Button, Alert, Spinner, Row, Col } from "react-bootstrap";
+// import { auth, db } from "../firebase";
+// import { createUserWithEmailAndPassword } from "firebase/auth";
+// import { doc, setDoc } from "firebase/firestore";
 
 const Signup = () => {
   const [formData, setFormData] = useState({

@@ -1,44 +1,44 @@
-const mongoose = require('mongoose');
+const axios = require('axios');
 
-const compatibilityCheckSchema = new mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true
-  },
-  userProfileId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'HealthProfile'
-  },
-  partnerName: {
-    type: String,
-    trim: true
-  },
-  partnerGenotype: {
-    type: String,
-    enum: ['AA', 'AS', 'SS', 'AC', 'SC', 'CC'],
-    required: true
-  },
-  partnerBloodGroup: {
-    type: String,
-    enum: ['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-', '']
-  },
-  result: {
-    compatible: Boolean,
-    riskLevel: String,
-    riskScore: Number,
-    message: String,
-    recommendation: String,
-    childProbabilities: {
-      AA: String,
-      AS: String,
-      SS: String
+const checkCompatibility = async (userData) => {
+    try {
+        // 1. Prepare the data exactly how the CSV was structured
+        const features = [
+            userData.age,
+            userData.gender,
+            userData.familyHistory,
+            userData.hemoglobin,
+            userData.fetalHemoglobin,
+            userData.rdw_cv,
+            userData.serumFerritin,
+            userData.brca1,
+            userData.p53,
+            userData.sweatChloride,
+            userData.sickledRbc,
+            userData.il6
+        ];
+
+        // 2. Call the Python ML Brain
+        const response = await axios.post('http://localhost:5000/predict', {
+            features: features
+        });
+
+        // 3. Get the prediction (0-4)
+        const category = response.data.disease_category;
+
+        // 4. Return a human-friendly message based on the ML result
+        const messages = {
+            0: "Low Risk: No significant genetic markers detected.",
+            1: "Moderate Risk: Some markers present, consultation advised.",
+            2: "High Risk: Significant markers for Sickle Cell detected.",
+            3: "Critical: Immediate medical consultation required.",
+            4: "Carrier: You carry the trait but may not show symptoms."
+        };
+
+        return messages[category];
+
+    } catch (error) {
+        console.error("ML Error:", error);
+        return "Error connecting to the ML engine.";
     }
-  },
-  checkedAt: {
-    type: Date,
-    default: Date.now
-  }
-});
-
-module.exports = mongoose.model('CompatibilityCheck', compatibilityCheckSchema);
+};
